@@ -159,7 +159,7 @@ class Test_US_01:
             "L002", "Test Laptop 2", "Yes", "", "MACOS")
         assert tested_text == actual_text
         
-
+        
 
 
         
