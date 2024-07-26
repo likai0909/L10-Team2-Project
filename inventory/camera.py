@@ -1,3 +1,5 @@
+from inventory.item import item
+
 class Camera():
     # Refactor (E): Extract duplicate attributes and methods.
     # There are several common attributes and methods in
