@@ -27,31 +27,6 @@ class Camera():
     def setIsAvailable(self, isAvailable):
         self._isAvailable = isAvailable
         
-    def loanCamera(self, assetTag, dueDate):
-        success = False
-        if len(assetTag) > 0 and len(dueDate) > 0:
-            # Refactor (C): use findCamera()
-            for i in self.cameraList:
-                if i.getAssetTag() == assetTag:
-                    if i.getIsAvailable() == "Yes":
-                        i.setIsAvailable(False)
-                        i.setDueDate(dueDate)
-                        success = True
-        
-        return success
-    
-    def returnCamera(self, assetTag):
-        success = False
-        if len(assetTag) > 0:
-            # Refactor (C): use findcamera()
-            for i in self.cameraList:
-                if i.getAssetTag() == assetTag:
-                    if i.getIsAvailable() == "No":
-                        i.setIsAvailable(True)
-                        i.setDueDate("")
-                        success = True
-        
-        return success
 
 
 
