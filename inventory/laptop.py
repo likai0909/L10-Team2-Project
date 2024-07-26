@@ -16,7 +16,5 @@ class Laptop(item):
         return super().__str__() \
             + "{:<10}\n".format(self.getOS())
         
-    
-        
 
 
