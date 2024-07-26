@@ -7,7 +7,23 @@ class Inventory():
     def __init__(self):
         self.cameraList = []
         self.laptopList = []
-        
+    
+    def findAsset(self, assetTag):
+        # Refactor (C): Extract long methods to findCamera(assetTag), 
+# return the found camera, return None if not found.
+# **Don't forget to create test cases for this new method.
+# Check for existing camera
+        foundAsset = None
+        for c in self.cameraList:
+                currentTag = c.getAssetTag()
+                if currentTag == assetTag:
+                    foundAsset = c
+        for c in self.laptopList:
+                currentTag = c.getAssetTag()
+                if currentTag == assetTag:
+                    foundAsset = c
+        return foundAsset
+                    
     def addCamera(self, assetTag, description, opticalzoom):
         # Check for correct values
         correct = True
@@ -18,13 +34,10 @@ class Inventory():
 # return the found camera, return None if not found.
 # **Don't forget to create test cases for this new method.
 # Check for existing camera
-        notExist = True
-        for c in self.cameraList:
-                currentTag = c.getAssetTag()
-                if currentTag == assetTag:
-                    notExist = False
-                    error_message = "Asset already exists."
-        if correct and notExist:
+        if self.findAsset(assetTag) != None:
+            error_message = "Asset already exists."
+            
+        if correct and self.findAsset(assetTag) != None:
             new_camera = Camera(assetTag, description, opticalzoom)
             self.cameraList.append(new_camera)
             return True
@@ -42,13 +55,10 @@ class Inventory():
         # return the found laptop, return None if not found.
         # **Don't forget to create test cases for this new method.
         # Check for existing laptop
-        notExist = True
-        for l in self.laptopList:
-            currentTag = l.getAssetTag()
-            if currentTag == assetTag:
-                notExist = False
-                error_message = "Asset already exists."
-        if correct and notExist:
+        if self.findAsset(assetTag) != None:
+            error_message = "Asset already exists."
+            
+        if correct and self.findAsset(assetTag) != None:
             new_laptop = Laptop(assetTag, description, os)
             self.laptopList.append(new_laptop)
             return True
