@@ -102,6 +102,40 @@ class Inventory():
                         i.getOS() )
         return output
 
+    def loanAsset(self, assetTag, dueDate):
+        success = False
+        if len(assetTag) > 0 and len(dueDate) > 0:
+            foundAsset = self.findAsset(assetTag)
+            if foundAsset != None:
+                if foundAsset.getIsAvailable() == "Yes":
+                    foundAsset.setIsAvailable(False)
+                    foundAsset.setDueDate(dueDate)
+                    success = True
+        return success
+            
+    def loanCamera(self, assetTag, dueDate):
+        return self.loanAsset(assetTag, dueDate)
+        
+    def loanLaptop(self, assetTag, dueDate):
+        return self.loanAsset(assetTag, dueDate)
+    
+    def returnCamera(self, assetTag):
+        return self.returnAsset(assetTag)
+        
+    def returnLaptop(self, assetTag):
+        return self.returnAsset(assetTag)
+    
+    def returnAsset(self, assetTag):
+        success = False
+        if len(assetTag) > 0:
+            foundAsset = self.findAsset(assetTag)
+            if foundAsset != None:
+                if foundAsset.getIsAvailable() == "No":
+                    foundAsset.setIsAvailable(True)
+                    foundAsset.setDueDate("")
+                    success = True
+        return success
+
 
 
     
